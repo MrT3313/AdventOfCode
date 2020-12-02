@@ -21,8 +21,7 @@ def validPasswords_charPosition():
 
         idx1 = int(limits[0]) - 1
         idx2 = int(limits[1]) - 1
-        letter = splitLine[1][0]
-        count = 0    
+        letter = splitLine[1][0]  
 
         # Check Positions
         if splitLine[2][idx1] == letter and splitLine[2][idx2] == letter:
