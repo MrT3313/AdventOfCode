@@ -35,6 +35,6 @@ def threeNumberSum(target = 2020):
 
     return False
 
-
-result = threeNumberSum()
-print(result)
+# TEST
+# result = threeNumberSum()
+# print(result)

@@ -32,5 +32,6 @@ def validPasswords_charPosition():
     # RETURN
     return validPasswords
 
-result = validPasswords_charPosition()
-print(result)
+# TEST
+# result = validPasswords_charPosition()
+# print(result)

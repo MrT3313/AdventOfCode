@@ -23,6 +23,7 @@ def twoNumberSum(target = 2020):
     # Target not found
     return False
 
-result = twoNumberSum()
-print(result)
+# TEST
+# result = twoNumberSum()
+# print(result)
     

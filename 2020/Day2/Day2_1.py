@@ -36,6 +36,7 @@ def validPasswords_charCount():
     # RETURN
     return validPasswords
 
-result = validPasswords_charCount()
-print(result)
+# TEST
+# result = validPasswords_charCount()
+# print(result)
     
