@@ -122,5 +122,5 @@ def passportVerification():
     return validPassports
 
 # TEST
-result = passportVerification()
-print(result)
+# result = passportVerification()
+# print(result)
