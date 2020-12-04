@@ -75,11 +75,10 @@ def validateData(data):
         if units == 'cm':
             if value < 150 or value > 193:
                 return False
-        elif units == 'in':
+        
+        if units == 'in':
             if value < 59 or value > 76:
                 return False
-        else:
-            return False
 
     if data[0] == 'hcl':
         value = data[1]
@@ -123,5 +122,5 @@ def passportVerification():
     return validPassports
 
 # TEST
-# result = passportVerification()
-# print(result)
+result = passportVerification()
+print(result)
