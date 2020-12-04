@@ -14,12 +14,10 @@ def verifyAndValidate():
         if verifyFields(_, validate = True) == True:
             # Increment Counter
             validPassports += 1
-        else: 
-            continue
     
     # RETURN
     return validPassports
 
 # # TEST
-# result = verifyAndValidate()
-# print(result)
+result = verifyAndValidate()
+print(result)
