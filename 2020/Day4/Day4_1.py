@@ -1,41 +1,68 @@
 import re       # Python RegEx Package
 
-def passportVerification():
+def readInputData():
     # Get Input Data
     f = open("2020/Day4/Day4_input.txt", "r")
     input = f.read()
-    passports = input.split("\n\n")
+    dataArray = input.split("\n\n")
     f.close()
 
+    return dataArray
+
+def getPassportObjects(array, result = []):
+    for _ in array:
+        # Variables
+        dataObject = {}
+
+        # Split on new lines & spaces
+        pairs = re.split('\s', _)
+        # print(pairs)
+
+        # Split each pair into key and value array
+        for _ in pairs: 
+            pair = _.split(':')
+
+            # Add data to object
+            dataObject[pair[0]] = pair[1]
+
+        # Add object to result array
+        result.append(dataObject)
+
+    return result
+
+def verifyFields(obj, validate = False):
     # Variables
     requiredFields = [ 'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
+
+    # Check for all required fields
+    for _ in requiredFields:
+        if _ not in obj:
+            return False
+        
+        if _ in obj and validate == True:
+            if validateData(_) == False:
+                return False
+
+    return True
+
+def validateData(data):
+    pass
+
+def passportVerification():
+    # Variables
     validPassports = 0
 
-    # Loop through all passports
-    for _ in passports: 
-        # Variables
-        passportData = {}
-        valid = True
-        
-        # Split on spaces & newlines
-        passportArray = re.split('\s', _)
-        
-        # Add individual key value pairs to passportData object
-        for _ in passportArray:
-            split = _.split(':')
-            passportData[split[0]] = split[1]
-        
-        # Check for all requires fields
-        for _ in requiredFields:
-            if _ not in passportData:
-                valid = False
-                break
+    # Data
+    passports = readInputData()
+    arrayOfObjects = getPassportObjects(passports)
 
-        # Increment counter
-        if valid == True: 
+    # Loop through all passport objects
+    for _ in arrayOfObjects:
+        # Verify all required fields
+        if verifyFields(_) == True:
+            # Increment Counter
             validPassports += 1
 
-    # RETURN
     return validPassports
 
 # TEST
