@@ -29,27 +29,31 @@ def getData(data, fullString):
     
     return result
 
+def getMaxSeatID(passports):
+    maxID = -math.inf
+
+    for _ in passports:
+        if _[3] > maxID:
+            maxID = _[3]
+
+    return maxID
+
 def binaryBoarding_maxSeatID():
     # Get Data
     data = readInputData()
     dataArray = data.split("\n")
     num_of_rows = 128
     num_of_cols = 8
-    result = -math.inf
 
     # Modify Data
     modifiedArray = [[
-        string,
+        string,     # full string
         string[:7], # rowData
         string[7:], # colData
     ] for string in dataArray]
 
     # Loop through boarding passes
     for boardingPass in modifiedArray:
-        # [0] = full string
-        # [1] = row data
-        # [2] = col data
-
         # Get row and column data
         row = getData(list(range(0, num_of_rows)),  boardingPass[1])
         col = getData(list(range(0, num_of_cols)),    boardingPass[2])
@@ -58,12 +62,10 @@ def binaryBoarding_maxSeatID():
         seatID = row * 8 + col
         boardingPass.append(seatID)
 
-        # Update max seatID
-        if seatID > result:
-            result = seatID
-
+    result = getMaxSeatID(modifiedArray)
     return result, modifiedArray
 
 # TEST 
 # result = binaryBoarding_maxSeatID()
-# print(result)
+# print(result[0])
+# # print(result[1])
