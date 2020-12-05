@@ -1,7 +1,7 @@
-from Day5_1 import binaryBoarding_maxSeatID
+from Day5_1 import binaryBoarding_part1
 
 def binaryBoarding_findSeatID():
-    maxID, passports = binaryBoarding_maxSeatID()
+    maxID, passports = binaryBoarding_part1()
 
     seatIDs = [passport[3] for passport in passports]
     seatIDs.sort()

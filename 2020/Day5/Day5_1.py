@@ -38,7 +38,7 @@ def getMaxSeatID(passports):
 
     return maxID
 
-def binaryBoarding_maxSeatID():
+def binaryBoarding_part1():
     # Get Data
     data = readInputData()
     dataArray = data.split("\n")
@@ -66,6 +66,6 @@ def binaryBoarding_maxSeatID():
     return result, modifiedArray
 
 # TEST 
-# result = binaryBoarding_maxSeatID()
+# result = binaryBoarding_part1()
 # print(result[0])
 # # print(result[1])
