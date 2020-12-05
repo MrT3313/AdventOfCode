@@ -1,4 +1,3 @@
-import re
 import math
 
 def readInputData():
