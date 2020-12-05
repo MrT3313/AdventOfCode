@@ -30,7 +30,7 @@ def getData(data, fullString):
     
     return result
 
-def binaryBoarding():
+def binaryBoarding_maxSeatID():
     # Get Data
     data = readInputData()
     dataArray = data.split("\n")
@@ -57,13 +57,15 @@ def binaryBoarding():
 
         # Calculate seatID
         seatID = row * 8 + col
+        boardingPass.append(seatID)
+        # print(boardingPass.append(seatID))
 
         # Update max seatID
         if seatID > result:
             result = seatID
 
-    return result
+    return result, modifiedArray
 
 # TEST 
-# result = binaryBoarding()
+# result = binaryBoarding_maxSeatID()
 # print(result)
