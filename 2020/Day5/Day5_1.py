@@ -58,7 +58,6 @@ def binaryBoarding_maxSeatID():
         # Calculate seatID
         seatID = row * 8 + col
         boardingPass.append(seatID)
-        # print(boardingPass.append(seatID))
 
         # Update max seatID
         if seatID > result:

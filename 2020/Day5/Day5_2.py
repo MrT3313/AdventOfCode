@@ -11,11 +11,10 @@ def binaryBoarding_findSeatID():
             return False
 
         if seatIDs[idx + 1] - seatIDs[idx] != 1: 
-            print(seatIDs[idx],seatIDs[idx + 1])
             result = seatIDs[idx] + 1
 
             if result != seatIDs[idx + 1] - 1:
-                print('STILL NOT RIGHT')
+                print('Fails Gap Constraint')
 
             return result
 
