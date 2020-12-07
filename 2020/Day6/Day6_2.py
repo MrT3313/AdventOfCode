@@ -55,5 +55,5 @@ def commonQuestionsInGroup():
     return sum
 
 # TEST
-result = commonQuestionsInGroup()
-print(result)    
+# result = commonQuestionsInGroup()
+# print(result)    
