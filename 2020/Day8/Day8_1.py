@@ -1,15 +1,14 @@
+import pandas as pd
+
 def readInputData():
     # Get Input Data
     f = open("2020/Day8/input.txt", "r")
-    # f = open("2020/Day8/testInput.txt", "r")
+    # f = open("2020/Day8/testInput_pt1.txt", "r")
     input = f.read()
     dataArray = input.split("\n")
     f.close()
 
-    return dataArray
-
-def prepData(data):
-    return [readLine(x) for x in data]
+    return [readLine(x) for x in dataArray]
 
 def readLine(line):
     split = line.split(' ')
@@ -23,54 +22,52 @@ def readLine(line):
         direction = '+'  
     if amount[0] == "-":
         direction = '-'  
-    amount = amount[1:]
+    amount = int(amount[1:])
 
-    return action, direction, amount
+    return [action, direction, amount]
 
 def solve():
     data = readInputData()
-    cleanData = prepData(data)
+    # print(data)
 
-    seen = []
-    counter = 0
+    resultAcc = 0
     idx = 0
+    cache = []
+    run = True
 
-    print(cleanData)
-    while idx < len(cleanData):
-        print('COUNTER: ', counter, 'IDX: ', idx)
-        
-        # Check for repeat command
-        if idx in seen: 
+    while run == True: 
+        # Check idx
+        if idx in cache:
+            run = False
             break
-        else:
-            seen.append(idx)
-        
-        # Get current data
-        currData = cleanData[idx]
+        else: 
+            cache.append(idx)
 
-        # Perform action
+        currData = data[idx]
+        print(idx, currData)
+
         if currData[0] == 'nop':
-            print('nop')
             idx += 1
+            continue
 
         if currData[0] == 'acc':
-            print('acc')
             if currData[1] == '+':
-                counter += int(currData[2])
+                resultAcc += currData[2]
             if currData[1] == '-':
-                counter -= int(currData[2])
+                resultAcc -= currData[2]
             idx += 1
+            continue
 
         if currData[0] == 'jmp':
-            print('jmp')
             if currData[1] == '+':
-                idx += int(currData[2])
+                idx += currData[2]
             if currData[1] == '-':
-                idx -= int(currData[2])
-    
-    return counter, seen
+                idx -= currData[2]
+            continue
+
+    return resultAcc, cache
 
 # RESULT
-# result, seen = solve()
-# print('RESULT',result)
-# print('SEEN',seen)
+result, seen = solve()
+print('RESULT',result)
+print('SEEN',seen)
