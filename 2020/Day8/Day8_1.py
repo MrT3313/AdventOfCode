@@ -1,7 +1,4 @@
-import pandas as pd
-
 def readInputData():
-    # Get Input Data
     f = open("2020/Day8/input.txt", "r")
     # f = open("2020/Day8/testInput_pt1.txt", "r")
     input = f.read()
@@ -26,30 +23,44 @@ def readLine(line):
 
     return [action, direction, amount]
 
-def solve():
-    data = readInputData()
-    # print(data)
-
+def solve(data, part2=False, DEBUG=False):
+    '''
+    
+        data = [
+            [ 'npm' | 'acc' | jmp ,       '+' | '-',      int ], 
+            ...
+        ]
+    '''
     resultAcc = 0
     idx = 0
     cache = []
     run = True
 
     while run == True: 
-        # Check idx
+        if DEBUG: 
+            print('IDX: ', idx, 'RESULT: ', resultAcc)
+
+        # Exit Conditions
+        ## Check idx
         if idx in cache:
             run = False
             break
         else: 
             cache.append(idx)
-
+        
+        ## Check Part 2 Modification => last line check
+        if part2 == True and idx == len(data):
+            run = False
+            break 
+        
+        # Do Action
         currData = data[idx]
-        print(idx, currData)
-
+        ## No Action
         if currData[0] == 'nop':
             idx += 1
             continue
 
+        ## Increment Counter
         if currData[0] == 'acc':
             if currData[1] == '+':
                 resultAcc += currData[2]
@@ -58,7 +69,12 @@ def solve():
             idx += 1
             continue
 
+        ## Jump
         if currData[0] == 'jmp':
+            if currData[2] == 0:
+                run = False
+                break
+            
             if currData[1] == '+':
                 idx += currData[2]
             if currData[1] == '-':
@@ -68,6 +84,6 @@ def solve():
     return resultAcc, cache
 
 # RESULT
-result, seen = solve()
-print('RESULT',result)
-print('SEEN',seen)
+# result, cache = solve(readInputData())
+# print('RESULT',result)
+# print('cache',cache)
