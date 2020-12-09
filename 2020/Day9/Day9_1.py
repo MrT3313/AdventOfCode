@@ -40,7 +40,7 @@ def recurse(data, currentIdx, cache):
 
 def solve():
     data = readInputData()
-    print(data)
+    # print(data)
 
     '''
         preamble => 25 characters
@@ -62,5 +62,5 @@ def solve():
     return recurse(data, currentIdx, cache)
 
 # TEST
-result = solve()
-print(result)
+# result = solve()
+# print(result)
