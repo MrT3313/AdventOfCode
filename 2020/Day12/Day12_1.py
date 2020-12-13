@@ -55,6 +55,8 @@ def recurse(data, position, direction, movementArr, turningArr):
     
     # GET: instruction
     currInstruction = data[0]
+    print('')
+    print('-New Loop Start-')
     print('CURRENT INSTRUCTION: ', currInstruction)
     print('CURRENT POSITION: ', position)
     print('CURRENT DIRECTION: ', direction)
@@ -92,5 +94,5 @@ def solve():
     return abs(finalPosition[0]) + abs(finalPosition[1])
 
 # TEST
-result = solve()
-print(result)
+# result = solve()
+# print(result)
