@@ -88,6 +88,6 @@ def solve():
     return recurse(matrix)
 
 # TEST
-result, generations = solve()
-print(result)
+# result, generations = solve()
+# print(result)
 # print(generations)
