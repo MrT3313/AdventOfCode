@@ -6,3 +6,7 @@ Advent of Code is an Advent calendar of small programming puzzles for a variety 
 
 Website: [Link](https://adventofcode.com)  
 Creator: [Eric Wastl](http://was.tl)
+
+# Languages Used
+
+My main languages are Javascript/Typescript & Python but I am using these challenges (starting in 2024) to dip my toes into some other languages like Zig, Ocaml, Rust, GO etc...
