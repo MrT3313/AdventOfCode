@@ -38,11 +38,11 @@ def part2(data):
 
 		if clean_data[index:index + 4] == "do()":
 			do_active = True
-			index += 3
+			index += 4
 
 		if clean_data[index:index + 7] == "don't()":
 			do_active = False
-			index += 6
+			index += 7
 
 		if clean_data[index:index + 4] == "mul(" and do_active == True:
 			# UPDATE: index to skip "mul("
