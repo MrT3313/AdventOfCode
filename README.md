@@ -10,3 +10,19 @@ Creator: [Eric Wastl](http://was.tl)
 # Languages Used
 
 My main languages are Javascript/Typescript & Python but I am using these challenges (starting in 2024) to dip my toes into some other languages like Zig, Ocaml, Rust, GO etc...
+
+## Zig
+
+> [Homepage](https://ziglang.org/)
+
+### Install
+
+#### Mac > Homebrew
+
+> brew install zig
+
+## OCaml
+
+## Go
+
+## Rust
