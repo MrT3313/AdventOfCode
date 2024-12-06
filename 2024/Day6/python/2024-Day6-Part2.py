@@ -248,7 +248,7 @@ def recurse_2(
 
 
 
-            recurse_2(
+            return recurse_2(
                 matrix=matrix,
                 new_wall_position=new_wall_position,
                 new_direction=new_direction,
