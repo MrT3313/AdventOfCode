@@ -138,7 +138,8 @@ def part2(data):
                         matrix=fresh_matrix,
                         new_wall_position=current_position,
                         new_direction=new_direction,
-                        current_position=(neighbor_row,neighbor_col)
+                        starting_position=(neighbor_row,neighbor_col),
+                        current_position=(neighbor_row,neighbor_col),
                     )
                 )
 
@@ -161,6 +162,7 @@ def recurse_2(
     matrix, # HOW TO MAKE SURE THIS IS A CLEAN MATRIX AND UNEFFECTED BY ANY OTEHR RECURSIVE CALLS & MANIUPLATIONS ON THE MATRIX?
     new_wall_position,
     new_direction,
+    starting_position,
     current_position,
 ):
     print(f'===== RECURSION ===== :\n\tWall Proposal > {(new_wall_position[0], new_wall_position[1])}\n\tCurrent Position > {(current_position[0], current_position[1])}')
@@ -169,6 +171,11 @@ def recurse_2(
     next_row = current_position[0] + movement_directions[new_direction][0]
     next_col = current_position[1] + movement_directions[new_direction][1]
     print(f'NEXT CELL : ({next_row}, {next_col})')
+
+    # BREAK CONDITION:
+    if (next_row, next_col) == starting_position:
+        print(f'🎉🎉🎉🎉🎉🎉 WE FOUND ONE!!!! : Valid New Wall Position {new_wall_position}')
+        return True
 
     if (
         next_row < 0 or 
@@ -245,6 +252,7 @@ def recurse_2(
                 matrix=matrix,
                 new_wall_position=new_wall_position,
                 new_direction=new_direction,
+                starting_position=starting_position,
                 current_position=(next_next_row, next_next_col)
             )
 
@@ -260,7 +268,11 @@ def recurse_2(
             
             matrix[next_row][next_col] = movement_char
             return recurse_2(
-                matrix,new_wall_position,new_direction, (next_row, next_col)
+                matrix=matrix,
+                new_wall_position=new_wall_position,
+                new_direction=new_direction, 
+                starting_position=starting_position,
+                current_position=(next_row, next_col)
             )
     
     # print(f'Check - Final')
