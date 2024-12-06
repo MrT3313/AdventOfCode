@@ -42,7 +42,7 @@ def findGuardStartingPoint(matrix):
     
     return None
 
-def guardFoundFall(direction):
+def guardFoundWall(direction):
     # TURN: right
     if (direction == "^"): return ">"
     if (direction == ">"): return "v"
@@ -74,7 +74,7 @@ def getGuardMovementVector(curr_row, curr_col, direction_char, matrix):
             return [False, row - delta_row, col - delta_col]  
         # CHECK: for hit wall ("#")
         elif matrix[row][col] == '#':
-            direction_char  = guardFoundFall(direction_char)
+            direction_char  = guardFoundWall(direction_char)
             row = row - delta_row
             col = col - delta_col
             break
@@ -91,7 +91,6 @@ def getGuardMovementVector(curr_row, curr_col, direction_char, matrix):
     return [direction_char, row, col]
 
 def part1(data):
-
     # VARIABLES
     matrix_height = len(data)
     matrix_width = len(data[0])
