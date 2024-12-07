@@ -10,7 +10,7 @@ def readInputFile(test_input=False):
 
     return lines
 
-available_operators = ["*", "+"]
+available_operators = ["*", "+", "||"]
 
 def part1(data):
     print(f'THE DATA : {data}')
@@ -82,6 +82,9 @@ def calculate_equation(equation):
             result += number
         elif operator == '*':
             result *= number
+        elif operator == '||':
+            # Convert both numbers to strings, concatenate, then convert back to int
+            result = int(str(result) + str(number))
             
     return result
 
