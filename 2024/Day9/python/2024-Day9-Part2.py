@@ -42,43 +42,47 @@ def processLine(line):
 
     return result
 
-
 def squishLine(list):
     # VARIABLES
     debug_processing_print = 0
-
-    # LOOP
-    while True:
-        # FIND: first '.' index
-        first_dot_index = list.index('.') if '.' in list else -1
-
-        # FIND: last digit index
-        last_number_index = -1
-        for i in range(len(list) - 1, -1, -1):
-            if isinstance(list[i], int):
-                last_number_index = i
+    
+    # GROUP: numbers by file ID
+    file_groups = {}
+    for i, val in enumerate(list):
+        if isinstance(val, int):
+            if val not in file_groups:
+                file_groups[val] = []
+            file_groups[val].append(i)
+    
+    # PROCESS: files in descending order
+    for file_id in sorted(file_groups.keys(), reverse=True):
+        positions = file_groups[file_id]
+        file_size = len(positions)
+        
+        # FIND: leftmost valid space "."
+        current_start = min(positions)
+        best_start = current_start
+        
+        # LOOK: for spaces before the current position
+        for i in range(current_start):
+            if all(list[j] == '.' for j in range(i, i + file_size)):
+                best_start = i
                 break
-
-        # IF: 
-        #   we can't find both a dot and a number, 
-        #   or if the dot is after the number,
-        # THEN: 
-        #   we're done processing
-        if (
-            first_dot_index == -1 or 
-            last_number_index == -1 or 
-            first_dot_index > last_number_index
-        ):
-            break
-
-        # SWAP: elements in place
-        list[first_dot_index], list[last_number_index] = list[last_number_index], list[first_dot_index]
-
-        # INCREMENT: debugging print
-        if (debug_processing_print % 100 == 0):
+        
+        # MOVE: file IF we found a better position
+        if best_start < current_start:
+            # REMOVE: old positions
+            for pos in positions:
+                list[pos] = '.'
+            
+            # INSERT: in new position
+            for offset in range(file_size):
+                list[best_start + offset] = file_id
+                
+        if debug_processing_print % 100 == 0:
             print(f'...squishing line : {debug_processing_print}...')
         debug_processing_print += 1
-
+    
     return list
 
 def checksum(list):
